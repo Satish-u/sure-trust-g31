@@ -1,0 +1,61 @@
+                                                                            SQL ASSIGNMENT-1
+1. Total number of employees
+A. select count(*) as total_employees from emp;
+2. Total number of departments
+A. select count(*) as total_departments from dept;
+3. All the employees
+A. select *from emp; 
+4. All the departments
+A. select *from dept;
+5. Total Salary paid for all employees
+A. select sum(sal) as total_salary from emp;
+6. Total commission paid to all employees
+A. select sum(comm) as total_commission from emp;
+7. Which job titles of the employees get commission paid?
+A. select distinct job from emp where comm is not null;
+8. System date
+A. select sysdate from dual;
+9. Average salary paid to all employees
+A. select avg(sal) as average_salary from emp;
+10. How many employees are there in each department
+A. select deptno, count(*) as num_employees from emp group by deptno; 
+11. Total salary of the employees in each department
+A.  select deptno, sum(sal) as total_salary from emp group by deptno;
+12. How many employees are there under each job title?
+A.  select job,count(*) as employee_count from emp group by job;
+13. Average salary paid for each job title
+A.  select job,avg(sal) as average_salary from emp group by job;
+14. Hire day,month and year for each employee
+A. select* empno,day(hire_date) as hire_day,month(hire_date) as hire_month,year(hire_date) as hire_year,from emp;
+15. Sort the employee department wise
+A.  select *from emp order by deptno;
+16. Sort the employees based on their job titles
+A.  select *from emp order by job;
+17. Sort the employees based on their salary in desc
+A.  select *from emp order by sal desc;
+18. Sort the employee ascending order of their department and descending order of their salary
+A.   select *from emp order by deptno asc, sal desc;
+19. How many employees have their name with 6 characters?
+A.  select count(*) as num_employees from emp where length(ename) = 6;
+20. Maximum and minimum salary paid
+A.  select max(sal),min(sal) from emp;
+21. Maximum,minimum,average and sum of salary paid under each department
+A.  select deptno,max(sal) as max_salary,min(sal) as min_salary,avg(sal) as avg_salary,sum(sal) as     total_salary from emp group by deptno;  
+22. Sort the employee based on their hire date
+A.   select *from emp order by hiredate;
+23. Employee who joined latest
+A.   select *from emp where hiredate = (select max(hiredate) from emp);
+24. Who is the oldest employee in the organization based on hire date?
+A.   select *from emp where hiredate = (select min(hiredate) from emp);
+25. Sort the employee based on their hire year(descending) and department(ascending)
+A.  select e.*, d.dname from emp e join dept d ON e.deptno = d.deptno order by e.hiredate desc, d.deptno asc;
+26. Employees who get salaries greater than or equal to the average salary of employees 
+A.   select *from emp where sal >= (select avg(sal) from emp);
+27. Employees who get salaries less than or equal to the average salary of the employees
+A.   select *from emp where sal <= (select avg(sal) from emp);
+28. Employees get salaries between 2000 and 4000
+A.   select *from emp where sal between 2000 and 4000;
+29. Which employees get the highest and lowest salary?
+A.   select *from emp where sal = (select max(sal) from emp) or sal = (select min(sal) from emp);
+30. We need to celebrate the joining month of the employees. We plan to buy a gift for each of   them. How many gifts do I need to buy for next month?
+A.  select count(*) as num_emp_nextmonth from emp where month(hiredate)=month(date_add(now()),interval 1 month);
